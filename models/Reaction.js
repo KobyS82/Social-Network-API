@@ -34,4 +34,4 @@ const reactionSchema = new Schema(
 // README says that it is schema only
 // const Reaction = model("Reaction", reactionSchema);
 
-module.exports = Reaction;
+module.exports = reactionSchema;

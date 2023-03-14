@@ -85,30 +85,36 @@ const names = [
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // Function to generate random users that we can add to the database.
-const getRandomName = () => {
-    `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
-};
+const getRandomName = () =>
+  `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
 
 // Function to generate random thoughts that we can add to the database. Includes thought responses.
-const getRandomThought = () => {
-    const thoughts = [];
-    for (let i = 0; i < 10; i++) {
-        const thought = {
-        id: i,
-        username: getRandomArrItem(users),
-        thoughtText: `This is a random thought ${i}`,
-        createdAt: new Date(Date.now()).toDateString(),
-        };
-        thoughts.push(thought);
-    }
-    return thoughts;
+const getRandomThought = (int) => {
+  let results = [];
+  for (let i = 0; i < int; i++) {
+    results.push({
+      published: Math.random() < 0.5,
+      description: getRandomArrItem(descriptionsBodies),
+      advertiserFriendly: Math.random() < 0.5,
+      responses: [...getThoughtResponses(3)],
+    });
+  }
+  return results;
     };
 
 // Create the responses that will be added to each thought.
 const getThoughtResponses = (int) => {
     if (int === 1) {
         return getRandomArrItem(possibleResponses);
-    }
-};
+      }
+      let results = [];
+      for (let i = 0; i < int; i++) {
+        results.push({
+          responseBody: getRandomArrItem(possibleResponses),
+          username: getRandomName(),
+        });
+      }
+      return results;
+    };
 
 module.exports = { getRandomName, getRandomThought, getThoughtResponses };
