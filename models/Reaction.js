@@ -30,8 +30,8 @@ const reactionSchema = new Schema(
     }
 );
 
-//delete this line? Don't think I need it
+// delete this line? Don't think I need it
 // README says that it is schema only
-const Reaction = model("Reaction", reactionSchema);
+// const Reaction = model("Reaction", reactionSchema);
 
 module.exports = Reaction;
