@@ -1,13 +1,19 @@
-const User = require("../models/User");
-const Thought = require("../models/Thought");
+const { Thought, User } = require("../models");
 
 // functions to be used at thoughtRoutes.js
 // CHANGE TO THOUGHT CONTROLLER
 module.exports = {
   getThoughts(req, res) {
-    Thought.find()
-      .then((thoughts) => res.json(thoughts))
-      .catch((err) => res.status(500).json(err));
+    Thought.find({})
+      .then((thought) => 
+        !thought
+          ? res.status(404).json( { message: "No thoughts found" })
+          : res.json(thought)
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({err, message: "wtf" })
+    });
   },
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
