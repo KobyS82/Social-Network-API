@@ -1,4 +1,5 @@
-const { Thought, User } = require("../models/Thought");
+const User = require("../models/User");
+const Thought = require("../models/Thought");
 
 // functions to be used at thoughtRoutes.js
 // CHANGE TO THOUGHT CONTROLLER
